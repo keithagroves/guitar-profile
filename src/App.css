@@ -21,14 +21,14 @@
 }
 
 .App-header {
-  background: linear-gradient(45deg, #9497a5,#9198e5);
+  background: linear-gradient(49deg,#9497a5,#c3fbff);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #363636
 }
 
 .App-link {
@@ -54,7 +54,7 @@ p{
   border-radius: 15px;
   border: none;
   font-size: large;
-  background-color: #62e3ff;
+  background-color: #95efc3;
   
 }
 .actionButton:hover {
