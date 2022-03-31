@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/guitar-profile/static/css/main.d1c0509d.css",
+    "main.css": "/guitar-profile/static/css/main.3a413d16.css",
     "main.js": "/guitar-profile/static/js/main.621fec37.js",
     "static/js/787.c2b01db2.chunk.js": "/guitar-profile/static/js/787.c2b01db2.chunk.js",
     "index.html": "/guitar-profile/index.html",
-    "main.d1c0509d.css.map": "/guitar-profile/static/css/main.d1c0509d.css.map",
+    "main.3a413d16.css.map": "/guitar-profile/static/css/main.3a413d16.css.map",
     "main.621fec37.js.map": "/guitar-profile/static/js/main.621fec37.js.map",
     "787.c2b01db2.chunk.js.map": "/guitar-profile/static/js/787.c2b01db2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d1c0509d.css",
+    "static/css/main.3a413d16.css",
     "static/js/main.621fec37.js"
   ]
 }
