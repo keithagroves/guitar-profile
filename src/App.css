@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: le-monde-livre-classic-byol,serif;
 }
 .title{
   margin-top: 10px;
@@ -21,7 +22,7 @@
 
 .App-header {
   background: linear-gradient(45deg, #9497a5,#9198e5);
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,4 +55,10 @@ p{
   border: none;
   font-size: large;
   background-color: #62e3ff;
+  
+}
+.actionButton:hover {
+  background: #00eeff;
+  transform: scale(1.1);
+  transition-duration: 0.5s;
 }
