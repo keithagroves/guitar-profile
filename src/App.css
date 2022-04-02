@@ -62,3 +62,46 @@ p{
   transform: scale(1.1);
   transition-duration: 0.5s;
 }
+
+.learn {
+  background: #c292c9;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 2rem 1.6rem;
+}
+
+.modal {
+  min-width: 15rem;
+  max-width: 38rem;
+  max-height: calc(100vh - 4rem);
+  overflow: auto;
+  margin:auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--color-dark-12);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.social{
+  position: fixed;
+  bottom: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 14rem;
+  justify-content: space-between;
+}
