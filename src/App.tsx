@@ -110,7 +110,7 @@ function App() {
       <div className="App">
         {/* <Guitar strings={[0, 1, 2, 2, 0, -1]} />, */}
         <header className="App-header">
-          <Testimonial />
+          {/* <Testimonial /> */}
 
           <div className="chords">
             <MyChord chordArr={chordState} />
