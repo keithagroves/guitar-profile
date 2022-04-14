@@ -60,17 +60,17 @@ const E: FretFingerChord = {
   fingers: [0, 2, 3, 1, 0, 0],
 }
 const F: FretFingerChord = {
-  frets: [3, 3, 2, 0, 1, 0],
-  fingers: [3, 4, 2, 0, 1, 0],
+  frets: [1, 3, 3, 2, 1, 1],
+  fingers: [1, 3, 4, 2, 1, 1],
 }
 const G: FretFingerChord = {
   frets: [3, 2, 0, 0, 0, 1],
-  fingers: [2, 1, 0, 0, 0, 3],
+  fingers: [3, 2, 0, 0, 0, 1],
 }
 
 const D: FretFingerChord = {
   frets: [0, 0, 0, 2, 3, 1],
-  fingers: [0, 0, 0, 1, 2, 3],
+  fingers: [0, 0, 0, 2, 3, 1],
 }
 interface FretFingerChord {
   frets: number[]
