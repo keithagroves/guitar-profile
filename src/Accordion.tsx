@@ -19,18 +19,18 @@ const Accordion = () => {
         'John William has been studying the art of guitar playing for over 30 years and graduated from Musicians Institute (MI). John has since stayed involved in the industry on multiple levels working at places like Gibson and serving as the Vice President of Tronical USA.',
     },
     {
-      title: 'Options',
+      title: 'Styles',
       content:
         'Because John Williams has an eclectic taste and has skills in multiple genres, students can choose from any style that their heart desires, and John will be your dedicated teacher.',
     },
     {
       title: 'Age/level',
       content:
-        'Lessons are recommended for students ages 8 and up. Whether you are a brand new beginner or an expert seeking to hone your craft, regular lessons are a great option. Anyone can start and learn this wonderful skill. Sign up today!.',
+        'Lessons are recommended for students ages 5 and up. Whether you are a brand new beginner or an expert seeking to hone your craft, regular lessons are a great option. Anyone can start and learn this wonderful skill. Sign up today!.',
     },
     {
       title: 'Pricing',
-      content: '$60 for 30 min lesson, $100 for a 1 hour lesson',
+      content: 'First lesson is FREE! Guitar $40 for 30 min lesson, $80 for a 1 hour lesson, Ukulele $35 for 30 min lesson, $70 fo a 1 hour lesson',
     },
   ]
   return (
