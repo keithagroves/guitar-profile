@@ -134,7 +134,7 @@ function App() {
               }}
               className="actionButton"
             >
-              Contact{' '}
+              Book your <b>FREE</b> Lesson{' '}
             </button>
           </div>
           <div className="social">
