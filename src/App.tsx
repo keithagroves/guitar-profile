@@ -139,8 +139,10 @@ function App() {
           </div>
           <div className="social">
             <SocialIcon url="mailto:jaydubthedub@gmail.com" />
-            <SocialIcon url="https://www.linkedin.com/in/john-williams-672301235/" />
-            <SocialIcon url="https://www.youtube.com/watch?v=FMP-0Nfe-9k" />
+            <SocialIcon url="https://www.linkedin.com/in/john-williams-672301235/"
+            target="_blank" />
+            <SocialIcon url="https://www.youtube.com/watch?v=FMP-0Nfe-9k"
+            target="_blank" />
             {modalState && (
               <Modal
                 isOpen={modalState}
