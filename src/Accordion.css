@@ -2,11 +2,11 @@
     background: linear-gradient(270deg,#9497a5,#d3d9f2);
 }
 .accordion {
-    margin: 3rem;
+    margin: 4rem;
     background-color: none;
     color: rgb(0, 0, 0);
     cursor: pointer;
-    padding: 4px;
+    padding: 18px;
     border: none;
     text-align: left;
     outline: none;
