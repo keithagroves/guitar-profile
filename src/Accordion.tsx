@@ -30,7 +30,7 @@ const Accordion = () => {
     },
     {
       title: 'Pricing',
-      content: 'First lesson is FREE! Guitar $40 for 30 min lesson, $80 for a 1 hour lesson, Ukulele $35 for 30 min lesson, $70 fo a 1 hour lesson',
+      content: 'First lesson is FREE! Guitar $40 for 30 min lesson, $80 for a 1 hour lesson, Ukulele $35 for 30 min lesson, $70 for a 1 hour lesson',
     },
   ]
   return (
