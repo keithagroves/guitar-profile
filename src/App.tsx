@@ -145,6 +145,8 @@ function App() {
             target="_blank" />
             <SocialIcon url="https://www.instagram.com/guitarlessons.fun"
             target="_blank" />
+            <SocialIcon url="https://www.yelp.com/biz/john-williams-san-diego"
+            target="_blank" />
             {modalState && (
               <Modal
                 isOpen={modalState}
