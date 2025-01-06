@@ -1,23 +1,62 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { SocialIcon } from 'react-social-icons';
+import Modal from 'react-modal';
+import Chord from '@tombatossals/react-chords/lib/Chord';
+import Accordion from './Accordion';
+import TunerButton from './TunerButton';
+import './styles.css';
 
-import logo from './logo.svg'
+// Define the interface first
+interface FretFingerChord {
+  frets: number[];
+  fingers: number[];
+  barres?: number[];
+  capo?: boolean;
+}
 
-import './App.css'
-import Modal from 'react-modal'
-import { SocialIcon } from 'react-social-icons'
+// Define the chords as constants with explicit types
+const E_CHORD: FretFingerChord = {
+  frets: [0, 2, 2, 1, 0, 0],
+  fingers: [0, 2, 3, 1, 0, 0],
+  barres: [],
+  capo: false
+};
 
-import Chord from '@tombatossals/react-chords/lib/Chord'
+const G_CHORD: FretFingerChord = {
+  frets: [3, 2, 0, 0, 0, 1],
+  fingers: [3, 2, 0, 0, 0, 1],
+  barres: [],
+  capo: false
+};
 
-import Accordion from './Accordion'
-import Testimonial from './Testimonial'
+const C_CHORD: FretFingerChord = {
+  frets: [0, 3, 2, 0, 1, 0],
+  fingers: [0, 3, 2, 0, 1, 0],
+  barres: [],
+  capo: false
+};
 
-const MyChord = ({ chordArr }: { chordArr: FretFingerChord }) => {
-  const chord = {
-    frets: chordArr.frets,
-    fingers: chordArr.fingers,
-    barres: [1],
-    capo: false,
-  }
+const F_CHORD: FretFingerChord = {
+  frets: [1, 3, 3, 2, 1, 1],
+  fingers: [1, 3, 4, 2, 1, 1],
+  barres: [1],
+  capo: false
+};
+
+const D_CHORD: FretFingerChord = {
+  frets: [0, 0, 0, 2, 3, 1],
+  fingers: [0, 0, 0, 2, 3, 1],
+  barres: [],
+  capo: false
+};
+
+interface MyChordProps {
+  chordArr: FretFingerChord;
+}
+
+// Fixed the return type issue by explicitly returning JSX.Element
+const MyChord: React.FC<MyChordProps> = ({ chordArr }): JSX.Element => {
   const instrument = {
     strings: 6,
     fretsOnChord: 4,
@@ -26,141 +65,133 @@ const MyChord = ({ chordArr }: { chordArr: FretFingerChord }) => {
     tunings: {
       standard: ['E', 'A', 'D', 'G', 'B', 'E'],
     },
-  }
-  const lite = false // defaults to false if omitted
+  };
+  
   try {
-    return <Chord chord={chord} instrument={instrument} lite={lite} />
+    return <Chord chord={chordArr} instrument={instrument} lite={false} />;
   } catch (e) {
-    const chord = {
-      frets: [1, 2, 3, 4, 5, 1],
-      fingers: [1, 3, 4, 2, 1, 1],
-      barres: [1],
-      capo: false,
-    }
-    const instrument = {
-      strings: 6,
-      fretsOnChord: 4,
-      name: 'Guitar',
-      keys: [],
-      tunings: {
-        standard: ['E', 'A', 'D', 'G', 'B', 'E'],
-      },
-    }
-    const lite = false // defaults to false if omitted
-
-    return <Chord chord={chord} instrument={instrument} lite={lite} />
+    return <Chord chord={E_CHORD} instrument={instrument} lite={false} />;
   }
-}
-const C: FretFingerChord = {
-  frets: [0, 3, 2, 0, 1, 0],
-  fingers: [0, 3, 2, 0, 1, 0],
-}
-const E: FretFingerChord = {
-  frets: [0, 2, 2, 1, 0, 0],
-  fingers: [0, 2, 3, 1, 0, 0],
-}
-const F: FretFingerChord = {
-  frets: [1, 3, 3, 2, 1, 1],
-  fingers: [1, 3, 4, 2, 1, 1],
-}
-const G: FretFingerChord = {
-  frets: [3, 2, 0, 0, 0, 1],
-  fingers: [3, 2, 0, 0, 0, 1],
-}
+};
 
-const D: FretFingerChord = {
-  frets: [0, 0, 0, 2, 3, 1],
-  fingers: [0, 0, 0, 2, 3, 1],
-}
-interface FretFingerChord {
-  frets: number[]
-  fingers: number[]
-}
 function calculateData(number: number): FretFingerChord {
-  switch (number) {
-    case 0:
-      return E
-    case 1:
-      return G
-    case 2:
-      return C
-    case 3:
-      return F
-    default:
-      return D
-  }
+  const chords = [E_CHORD, G_CHORD, C_CHORD, F_CHORD, D_CHORD];
+  return chords[number] || D_CHORD;
 }
 
 function App() {
-  const [chordState, setChordState] = useState(E)
-  const [modalState, setModalState] = useState(false)
+  const [chordState, setChordState] = useState<FretFingerChord>(E_CHORD);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  function chordChange() {
-    setChordState(calculateData(Math.floor(Math.random() * 5)))
-  }
   useEffect(() => {
+    Modal.setAppElement('#root');
+    
     const timer = setInterval(() => {
-      chordChange()
-    }, 1500)
-    return () => clearInterval(timer)
-  }, [])
+      setChordState(calculateData(Math.floor(Math.random() * 5)));
+    }, 1500);
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <>
-      <div className="App">
-        {/* <Guitar strings={[0, 1, 2, 2, 0, -1]} />, */}
-        <header className="App-header">
-          {/* <Testimonial /> */}
+    <div className="min-h-screen">
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="logo">JW</div>
+        <div className="nav-links">
+          {/* Navigation links can be added here */}
+        </div>
+      </nav>
 
-          <div className="chords">
+      <main className="hero">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <div className="chord-diagram">
             <MyChord chordArr={chordState} />
           </div>
-          <h1 className="title">John Williams</h1>
-          <p>Private Guitar Teacher in San Diego</p>
-          <div>
+
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-center"
+          >
+            John Williams
+          </motion.h1>
+          
+          <motion.p 
+            className="subtitle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Private Guitar Teacher in San Diego
+          </motion.p>
+
+          <div className="cta-container">
             <button
-              onClick={(e: React.MouseEvent<HTMLElement>) => {
-                setModalState(true)
-              }}
-              className="actionButton learn"
+              onClick={() => setIsModalOpen(true)}
+              className="cta-button secondary-cta"
             >
+              <i className="fas fa-info-circle"></i>
               Learn More
             </button>
-            <button
-              onClick={(e: React.MouseEvent<HTMLElement>) => {
-                e.preventDefault()
-                window.location.href =
-                  'https://0kgjda4nd6j.typeform.com/to/xAozLYBb'
-              }}
-              className="actionButton"
+
+            <a 
+              href="https://0kgjda4nd6j.typeform.com/to/xAozLYBb"
+              className="cta-button primary-cta"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Book your <b>FREE</b> Lesson{' '}
-            </button>
+              <i className="fas fa-calendar-alt"></i>
+              Book your <span className="font-bold">FREE</span> Lesson
+            </a>
+
+            <TunerButton 
+              href="YOUR_GITHUB_REPO_URL_HERE"
+              onClick={() => {
+                console.log('Tuner button clicked');
+              }} 
+            />
           </div>
-          <div className="social">
+
+          <div className="social-links">
             <SocialIcon url="mailto:jaydubthedub@gmail.com" />
-            <SocialIcon url="https://www.linkedin.com/in/john-williams-672301235/"
-            target="_blank" />
-            <SocialIcon url="https://www.youtube.com/watch?v=FMP-0Nfe-9k"
-            target="_blank" />
-            <SocialIcon url="https://www.instagram.com/guitarlessons.fun"
-            target="_blank" />
-            <SocialIcon url="https://www.yelp.com/biz/john-williams-san-diego"
-            target="_blank" />
-            {modalState && (
-              <Modal
-                isOpen={modalState}
-                className="modal"
-                onRequestClose={() => setModalState(false)}
-              >
-                <Accordion />
-              </Modal>
-            )}
+            <SocialIcon url="https://www.linkedin.com/in/john-williams-672301235/" target="_blank" />
+            <SocialIcon url="https://www.youtube.com/watch?v=FMP-0Nfe-9k" target="_blank" />
+            <SocialIcon url="https://www.instagram.com/guitarlessons.fun" target="_blank" />
+            <SocialIcon url="https://www.yelp.com/biz/john-williams-san-diego" target="_blank" />
           </div>
-        </header>
-      </div>
-    </>
-  )
+        </motion.div>
+
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          className="modal-content"
+          overlayClassName="modal-overlay"
+        >
+          <Accordion />
+        </Modal>
+
+        <div className="scroll-indicator">
+          <i className="fas fa-chevron-down"></i>
+        </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
